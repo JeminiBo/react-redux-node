@@ -14,7 +14,7 @@ module.exports = {
         
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.js?$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
@@ -28,13 +28,26 @@ module.exports = {
                 
             },
             {
+                test: /\.jsx?$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [ 'es2015', 'react', 'stage-2'],
+                        plugins: ['transform-class-properties']
+                        
+                    }
+                    
+                }
+                
+                
+            },
+            {
                 test: /\.css?$/,
                 use: [{ loader: 'style-loader' },
                 {
-                    loader: 'css-loader',
-                    options: {
-                        modules: true
-                    }
+                    loader: 'css-loader'
+                   
                 }]
             },
             {
