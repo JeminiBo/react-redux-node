@@ -10,28 +10,46 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx']
     },
-    module:{
-        rules:[
+    module: {
+        
+        rules: [
             {
-                test: /\.js?$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['es2015','env', 'react']
+                test: /\.jsx?$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [ 'react'],
+                        
+                    }
+                    
                 }
+                
+                
             },
             {
-                test: /\.css$/,
+                test: /\.css?$/,
+                use: [{ loader: 'style-loader' },
+                {
+                    loader: 'css-loader',
+                    options: {
+                        modules: true
+                    }
+                }]
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
                 use: [
-                    { loader: 'style-loader' },
+                    'file-loader',
                     {
-                        loader: 'css-loader',
+                        loader: 'image-webpack-loader',
                         options: {
-                            modules: true
+                            bypassOnDebug: true
                         }
                     }
                 ]
             }
         ]
     }
+    
 };

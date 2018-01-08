@@ -19,8 +19,12 @@ module.exports = function (app, db) {
       if (err) {
         res.send({ 'error': 'An error has occurred' });
       } else {
-        console.log(item);
+        if(item){
         res.send(item);
+        }
+        else{
+          res.status('401').send('Пользователь не найден');
+        }
       }
     });
   }
