@@ -5,10 +5,7 @@ import {login} from '../../redux/registration/registrationActions.jsx'
 import {bindActionCreators} from 'redux'
 
 class LoginForm extends React.Component {
-    constructor(props) {
-        super(props);
-       
-    }
+   
     
     logOn() {
         if (this.refs.userLogin.value !== ''){

@@ -5,12 +5,7 @@ import {registrationUser} from '../../redux/registration/registrationActions.jsx
 import {bindActionCreators} from 'redux'
 
 class UserForm extends React.Component {
-    constructor(props) {
-        super(props);
     
-        
-
-    }
 
     signUp() {
         if (this.refs.userLogin.value !== '') {

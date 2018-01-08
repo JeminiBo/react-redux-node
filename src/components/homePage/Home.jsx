@@ -2,10 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux';
 
 class HelloWorld extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
+  
     renderUserName = () => {
         if(this.props.currentUser) {
             return this.props.currentUser.userLogin;
