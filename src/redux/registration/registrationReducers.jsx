@@ -1,7 +1,7 @@
 const defaultState = {
   users: [],
   currentUser: null
-}
+};
 
 const registrationReducer = function (state = defaultState, action) {
   switch (action.type) {
@@ -16,30 +16,30 @@ const registrationReducer = function (state = defaultState, action) {
 };
 
 function registrationUserHandler(state, userLogin) {
-  let updatedUsers = state.users.slice(0);
+  const updatedUsers = state.users.slice(0);
   updatedUsers.push(userLogin);
   return {
     ...state,
     users: updatedUsers
-  }
+  };
 }
 
-function loginUserHandler(state, userLogin) {                 
+function loginUserHandler(state, userLogin) {
   return {
     ...state,
     currentUser: userLogin
-  } 
+  };
 }
 
 function logoutUserHandler(state) {
-  if(state.currentUser) {
+  if (state.currentUser) {
     return {
       ...state,
       currentUser: null
-    }
+    };
+  } else {
+    return state;
   }
-    else
-      return state; 
 }
 
 export default registrationReducer;
