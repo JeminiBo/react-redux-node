@@ -29072,7 +29072,9 @@ var App = function (_Component) {
     _createClass(App, [{
         key: 'render',
         value: function render() {
-            return _react2.default.createElement(_reactRedux.Provider, { store: _index2.default }, _react2.default.createElement(_reactRouterDom.BrowserRouter, null, _react2.default.createElement('div', null, _react2.default.createElement(_NavbarBlockComponent2.default, null), _react2.default.createElement(_reactRouterDom.Switch, null, _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }), _react2.default.createElement(_reactRouterDom.Route, { path: '/authorization', component: _LoginComponent2.default }), _react2.default.createElement(_reactRouterDom.Route, { path: '/registration', component: _RegistrationComponent2.default }), _react2.default.createElement(_reactRouterDom.Route, { path: '/content', component: _content2.default })))));
+            return _react2.default.createElement(_reactRedux.Provider, { store: _index2.default }, _react2.default.createElement(_reactRouterDom.BrowserRouter, null, _react2.default.createElement('div', null, _react2.default.createElement(_NavbarBlockComponent2.default, null), _react2.default.createElement(_reactRouterDom.Switch, null, _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/authorization', component: _LoginComponent2.default }), _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/registration', component: _RegistrationComponent2.default }), _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/content', component: _content2.default }), _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }), _react2.default.createElement(_reactRouterDom.Route, { path: '*', render: function render() {
+                    return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' });
+                } })))));
         }
     }]);
 

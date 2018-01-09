@@ -1,20 +1,5 @@
 import request from 'superagent';
 
-/*
-export const signUp = (userName,userLogin,pass) =>{
- 
-request 
-.post('http://localhost:8000/api')
-.send({ name:userName, login: userLogin, password: pass })
-.set('Content-Type', 'application/json')
-.then(function(res) {
-    console.log('registered')
-})
-.catch(function (err) {
-    console.log(new Error(err.message))
-})
-    
-}*/
 export const signUp = (userName,userLogin,pass) => {
     return new Promise((resolve, reject) => {
         request

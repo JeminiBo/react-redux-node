@@ -28,18 +28,34 @@ module.exports = {
                 
             },
             {
+                
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
+                  
                     loader: 'babel-loader',
                     options: {
                         presets: [ 'es2015', 'react', 'stage-2'],
-                        plugins: ['transform-class-properties']
+                        plugins: ['transform-class-properties'],
                         
-                    }
+                    },
+                   
                     
                 }
                 
+                
+            },
+            {
+                
+                test: /\.jsx?$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'eslint-loader',
+                    options: {
+                        emitError: true,
+                      }
+                 
+                }
                 
             },
             {
