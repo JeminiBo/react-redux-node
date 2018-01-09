@@ -5,31 +5,52 @@ import { registrationUser } from '../../redux/registration/registrationActions.j
 import { bindActionCreators } from 'redux';
 
 class UserForm extends React.Component {
-  signUp() {
-    if (this.refs.userLogin.value !== '') {
-      const itemText = this.refs.userFirstName.value + ' ' + this.refs.userSecondName.value;
-      const loginText = this.refs.userLogin.value;
-      const passText = this.refs.userPass.value;
-      this.refs.userFirstName.value = '';
-      this.refs.userSecondName.value = '';
-      this.refs.userLogin.value = '';
-      this.refs.userPass.value = '';
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstName: '',
+      secondName: '',
+      login: '',
+      password: ''
+    };
 
-      return this.props.registrationUser(itemText, loginText, passText);
-    }
+    this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
+    this.handleChangeSecondName = this.handleChangeSecondName.bind(this);
+    this.handleChangeLogin = this.handleChangeLogin.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
+  }
+
+  handleChangeFirstName(event) {
+    this.setState({ firstName: event.target.value });
+  }
+
+  handleChangeSecondName(event) {
+    this.setState({ secondName: event.target.value });
+  }
+
+  handleChangeLogin(event) {
+    this.setState({ login: event.target.value });
+  }
+
+  handleChangePassword(event) {
+    this.setState({ password: event.target.value });
+  }
+
+  signUp() {
+    return this.props.registrationUser(this.state.firstName, this.state.login, this.state.password);
   }
 
   render() {
     return (
       <div className="centered">
         <p>Имя</p>
-        <input ref="userFirstName" />
+        <input value={this.state.firstName} onChange={this.handleChangeFirstName} />
         <p>Фамилия</p>
-        <input ref="userSecondName" />
+        <input value={this.state.secondName} onChange={this.handleChangeSecondName} />
         <p>Логин</p>
-        <input ref="userLogin" />
+        <input value={this.state.login} onChange={this.handleChangeLogin} />
         <p>Пароль</p>
-        <input ref="userPass" />
+        <input value={this.state.password} onChange={this.handleChangePassword} />
         <br />
         <Button bsStyle="primary" bsSize="large" onClick={this.signUp.bind(this)} >Зарегистрироваться</Button>
       </div>

@@ -5,26 +5,37 @@ import { login } from '../../redux/registration/registrationActions.jsx';
 import { bindActionCreators } from 'redux';
 
 class LoginForm extends React.Component {
-  logOn() {
-    if (this.refs.userLogin.value !== '') {
-      const loginText = this.refs.userLogin.value;
-      const passText = this.refs.userPass.value;
-      this.refs.userLogin.value = '';
-      this.refs.userPass.value = '';
+  constructor(props) {
+    super(props);
+    this.state = {
+      login: '',
+      password: ''
+    };
+    this.handleChangeLogin = this.handleChangeLogin.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
+  }
 
-      return this.props.login(loginText, passText);
-    }
+  handleChangeLogin(event) {
+    this.setState({ login: event.target.value });
+  }
+
+  handleChangePassword(event) {
+    this.setState({ password: event.target.value });
+  }
+
+  signIn() {
+    return this.props.login(this.state.login, this.state.password);
   }
 
   render() {
     return (
       <div className="centered">
         <p>Логин</p>
-        <input ref='userLogin' />
+        <input value={this.state.login} onChange={this.handleChangeLogin} />
         <p>Пароль</p>
-        <input ref='userPass' />
-        <br></br>
-        <Button bsStyle="primary" bsSize="large" onClick={this.logOn.bind(this)} >Авторизоваться</Button>
+        <input value={this.state.password} onChange={this.handleChangePassword} />
+        <br />
+        <Button bsStyle="primary" bsSize="large" onClick={this.signIn.bind(this)} >Авторизоваться</Button>
       </div>
     );
   }
