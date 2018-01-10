@@ -5,16 +5,16 @@ body{
   padding: 0;
   font-family: "Arial", sans-serif;
   background-size: cover;
-  background-image: url(./img/background.jpg);
+  background-image: url(./img/background1.jpg);
 
 }
-header{
+/* header{
   background-color: #34302d;
   width: 100%;
   position: relative;
   height: 70px;
   margin: 0 auto;
-}
+} */
 input{
     display: block;
     
@@ -93,7 +93,7 @@ ul{
 }
 h1{
 
-  color: #deee00;
+  color: #070703;
 }
 
 .home{

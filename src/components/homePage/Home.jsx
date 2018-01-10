@@ -11,7 +11,7 @@ class HelloWorld extends React.Component {
 
   render() {
     return (
-      <h1>Hey Yo {this.renderUserName()}</h1>
+      <h1>Hi {this.renderUserName()}</h1>
     );
   }
 }
