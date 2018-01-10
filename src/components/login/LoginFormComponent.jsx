@@ -35,7 +35,7 @@ class LoginForm extends React.Component {
                 <h3 className="loginInputText">Login:</h3>
               </Col>
               <Col xs={7} >
-                <FormControl value={this.state.login} onChange={this.handleChangeLogin} />
+                <FormControl onChange={this.handleChangeLogin} />
               </Col>
             </Col>
           </Row>
@@ -48,7 +48,7 @@ class LoginForm extends React.Component {
                 <h3 className="loginInputText">Password:</h3>
               </Col>
               <Col xs={7} >
-                <FormControl value={this.state.password} onChange={this.handleChangePassword} />
+                <FormControl onChange={this.handleChangePassword} />
               </Col>
             </Col>
           </Row>
@@ -56,18 +56,10 @@ class LoginForm extends React.Component {
 
         <FormGroup>
           <Col xs={1} xsOffset={6} >
-            <Button bsStyle="primary" bsSize="large" onClick={this.signIn.bind(this)}>Log In</Button>
+            <Button bsStyle="info" bsSize="large" onClick={this.signIn.bind(this)}>Log In</Button>
           </Col>
         </FormGroup>
       </Form>
-      /* <div className="centered">
-        <p>Логин</p>
-        <input value={this.state.login} onChange={this.handleChangeLogin} />
-        <p>Пароль</p>
-        <input value={this.state.password} onChange={this.handleChangePassword} />
-        <br />
-        <Button bsStyle="primary" bsSize="large" onClick={this.signIn.bind(this)} >Авторизоваться</Button>
-      </div> */
     );
   }
 }

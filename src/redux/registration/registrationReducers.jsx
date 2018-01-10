@@ -3,8 +3,10 @@ const defaultState = {
   currentUser: null
 };
 
-const registrationReducer = function (state = defaultState, action) {
+const registrationReducer = function registrationReducer(state = defaultState, action) {
   switch (action.type) {
+    case 'SET_STATE':
+      return userInHandler(state, action.payload);
     case 'ADD_USER':
       return registrationUserHandler(state, action.payload);
     case 'LOGIN':
@@ -21,6 +23,21 @@ function registrationUserHandler(state, userLogin) {
   return {
     ...state,
     users: updatedUsers
+  };
+}
+
+function userInHandler(state, user) {
+  if (user.login == null) {
+    return {
+      ...state,
+      currentUser: null
+    };
+  }
+  return {
+    ...state,
+    currentUser: {
+      userLogin: user.login
+    }
   };
 }
 

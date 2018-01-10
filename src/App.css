@@ -6,6 +6,7 @@ body{
   font-family: "Arial", sans-serif;
   background-size: cover;
   background-image: url(./img/background1.jpg);
+  overflow: hidden;
 
 }
 /* header{
@@ -25,16 +26,6 @@ input{
 Button{
     display: block;
     margin: 0 auto;
-}
-
-li {
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  padding-right: 30px;
-  padding-left: 30px;
-  margin: 0 ;
-
 }
 
 li:hover{
@@ -60,19 +51,10 @@ a {
   color: #fff8f3;
   font-size: 20px;
   margin:auto;
-}
+} 
 p{
   font-size: 20px;
   text-align: center;
-}
-ul{
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  position: relative;
-  line-height: 70px;
-  margin: 0 auto;
 }
 
 .info{

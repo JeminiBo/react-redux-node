@@ -20,6 +20,13 @@ module.exports = function (app, db) {
         res.send({ 'error': 'An error has occurred' });
       } else {
         if(item){
+          db.collection('cookie').updateOne(
+            {},
+            {
+              login: req.body.login,
+              password:req.body.password
+            }
+          )
         res.send(item);
         }
         else{
@@ -29,6 +36,36 @@ module.exports = function (app, db) {
     });
   }
   });
+
+app.post('/api/cookes', (req, res) => {
+     
+    db.collection('cookie').findOne({}, (err, item) => {
+      if (err) {
+        res.send({ 'error': 'An error has occurred' });
+      } else {
+        if(item){
+        res.send(item);
+        }
+        else{
+          res.status('401').send('Пользователь не найден');
+        }
+      }
+    });
+  
+  });
+
+app.post('/api/logout', (req, res) => {
+   
+    db.collection('cookie').updateOne(
+      {} ,
+       {
+        login : null,
+        password : null
+      }
+    );
+  
+  });
+
 app.post('/api', (req, res) => {
   const user = { name: req.body.name, login: req.body.login, password: req.body.password };
   

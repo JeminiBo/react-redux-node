@@ -7,6 +7,8 @@ import Content from './components/content/content.jsx';
 import './App.css';
 import Home from './components/homePage/Home';
 import { connect } from 'react-redux';
+import { getUser } from './redux/registration/registrationActions';
+import { bindActionCreators } from 'redux';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
@@ -21,6 +23,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 class App extends React.Component {
+  componentWillMount() {
+    this.props.getUser();
+  }
+
   isAutorized = () => {
     return this.props.currentUser;
   }
@@ -47,4 +53,10 @@ const mapStateToProps = (state) => ({
   currentUser: state.registrationReducer.currentUser,
 });
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = (dispatch) => ({
+  ...bindActionCreators({
+    getUser
+  }, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

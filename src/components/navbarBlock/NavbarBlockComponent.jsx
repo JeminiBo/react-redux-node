@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login, logout } from '../../redux/registration/registrationActions.jsx';
 import { bindActionCreators } from 'redux';
-import {Navbar, Nav, NavItem} from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 class Navigate extends React.Component {
   userVisionContent = () => {
@@ -12,25 +13,20 @@ class Navigate extends React.Component {
         <Navbar inverse collapseOnSelect>
           <Navbar.Collapse>
             <Nav>
-              <NavItem>
-                <Link to="/">Home</Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/content">Content</Link>
-              </NavItem>
+              <LinkContainer to="/">
+                <NavItem>Home</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/content">
+                <NavItem>Content</NavItem>
+              </LinkContainer>
             </Nav>
             <Nav pullRight>
-              <NavItem>
-                <Link to="/" onClick={this.props.logout}>Log Out</Link>
-              </NavItem>
+              <LinkContainer to="/" onClick={this.props.logout}>
+                <NavItem>Log Out</NavItem>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        /*<ul>
-          <li> <Link to="/">Главная</Link></li>
-          <li> <Link to="/content">Контент</Link></li>
-          <li> <Link to="/" onClick={this.props.logout}>Выйти</Link></li>
-        </ul>*/
       );
     } else {
       return (
@@ -42,25 +38,20 @@ class Navigate extends React.Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <NavItem>
-                <Link to="/">Home</Link>
-              </NavItem>
+              <LinkContainer to="/">
+                <NavItem>Home</NavItem>
+              </LinkContainer>
             </Nav>
             <Nav pullRight>
-              <NavItem>
-                <Link to="/authorization">Sign In</Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/registration">Sign Up</Link>
-              </NavItem>
+              <LinkContainer to="/authorization">
+                <NavItem>Sign In</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/registration">
+                <NavItem>Sign Up</NavItem>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-       /* <ul>
-          <li> <Link to="/">Главная</Link></li>
-          <li> <Link to="/authorization">Авторизация</Link></li>
-          <li> <Link to="/registration">Регистрация</Link></li>
-        </ul> */
       );
     }
   }
