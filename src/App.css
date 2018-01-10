@@ -109,3 +109,11 @@ h1{
   margin: 0 auto;
   text-align: center;
 }
+.loginInputText
+{
+  margin-top: 4px;
+}
+.signButton{
+  float: right;
+}
+

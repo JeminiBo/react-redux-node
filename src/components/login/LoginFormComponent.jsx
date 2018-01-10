@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Form, FormControl, FormGroup, Col, Row} from 'react-bootstrap';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -26,14 +26,48 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div className="centered">
+      <Form horizontal>
+        <FormGroup controlId="formHorizontalLogin">
+          <br />
+          <Row >
+            <Col xs={3} xsOffset={4}>
+              <Col xs={5} >
+                <h3 className="loginInputText">Login:</h3>
+              </Col>
+              <Col xs={7} >
+                <FormControl value={this.state.login} onChange={this.handleChangeLogin} />
+              </Col>
+            </Col>
+          </Row>
+        </FormGroup>
+
+        <FormGroup controlId="formHorizontalPassword">
+          <Row >
+            <Col xs={3} xsOffset={4}>
+              <Col xs={5} >
+                <h3 className="loginInputText">Password:</h3>
+              </Col>
+              <Col xs={7} >
+                <FormControl value={this.state.password} onChange={this.handleChangePassword} />
+              </Col>
+            </Col>
+          </Row>
+        </FormGroup>
+
+        <FormGroup>
+          <Col xs={1} xsOffset={6} >
+            <Button bsStyle="primary" bsSize="large" onClick={this.signIn.bind(this)}>Sign in</Button>
+          </Col>
+        </FormGroup>
+      </Form>
+      /* <div className="centered">
         <p>Логин</p>
         <input value={this.state.login} onChange={this.handleChangeLogin} />
         <p>Пароль</p>
         <input value={this.state.password} onChange={this.handleChangePassword} />
         <br />
         <Button bsStyle="primary" bsSize="large" onClick={this.signIn.bind(this)} >Авторизоваться</Button>
-      </div>
+      </div> */
     );
   }
 }
