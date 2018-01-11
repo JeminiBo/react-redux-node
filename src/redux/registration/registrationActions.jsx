@@ -1,4 +1,5 @@
 import { signUp, signIn, userIn, logoutUser } from '../../api/index.js';
+import Notifications from 'react-notification-system-redux';
 
 export const registrationUser = (userName, userLogin, pass) => dispatch => {
   signUp(userName, userLogin, pass).then((res) => dispatch({
@@ -15,15 +16,23 @@ export const registrationUser = (userName, userLogin, pass) => dispatch => {
 };
 
 export const login = (userLogin, pass) => dispatch => {
-  signIn(userLogin, pass).then((res) => dispatch({
-    type: 'LOGIN',
-    payload: {
-      userLogin: res.login,
-      pass: res.password
-    }
-  }))
+
+  signIn(userLogin, pass)
+    .then((res) => {
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          userLogin: res.login,
+          pass: res.password
+        }
+      });
+      
+    })
     .catch((err) => {
-      // alert(err.message);
+      dispatch(Notifications.error({
+        title: 'Ошибка',
+        message: 'Пользователь не существует',
+      }));
     });
 };
 

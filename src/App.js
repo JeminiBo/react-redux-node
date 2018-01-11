@@ -9,6 +9,7 @@ import Home from './components/homePage/Home';
 import { connect } from 'react-redux';
 import { getUser } from './redux/registration/registrationActions';
 import { bindActionCreators } from 'redux';
+import NotificationComponent from './components/notifications/NotificationComponent';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
@@ -35,6 +36,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
+          <NotificationComponent />
           <NavbarBlock />
           <Switch>
             <PrivateRoute exact path="/authorization" component={LoginComponent} isAutorized={this.isAutorized} />
