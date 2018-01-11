@@ -16,7 +16,6 @@ export const registrationUser = (userName, userLogin, pass) => dispatch => {
 };
 
 export const login = (userLogin, pass) => dispatch => {
-
   signIn(userLogin, pass)
     .then((res) => {
       dispatch({
@@ -26,7 +25,6 @@ export const login = (userLogin, pass) => dispatch => {
           pass: res.password
         }
       });
-      
     })
     .catch((err) => {
       dispatch(Notifications.error({

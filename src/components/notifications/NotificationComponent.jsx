@@ -1,16 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import Notifications from 'react-notification-system-redux';
 
-class NotificationComponent extends React.Component {
-
+class NotificationComponent extends React.PureComponent {
   render() {
     const { notifications } = this.props;
     const style = {
-      NotificationItem: { 
-        DefaultStyle: { 
+      NotificationItem: {
+        DefaultStyle: {
           margin: '10px 5px 2px 1px'
         },
 
@@ -33,10 +31,4 @@ NotificationComponent.contextTypes = {
   store: PropTypes.object
 };
 
-NotificationComponent.propTypes = {
-  notifications: PropTypes.array
-};
-
-export default connect(
-  state => ({ notifications: state.notifications })
-)(NotificationComponent);
+export default connect(state => ({ notifications: state.notifications }))(NotificationComponent);
