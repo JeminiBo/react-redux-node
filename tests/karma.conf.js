@@ -23,8 +23,8 @@ module.exports = function (config) {
       devtool: 'inline-source-map',
       module: {
         loaders: [
-          { test: /\.js$/, loader: 'babel-loader',query:{presets:['es2015', 'react', 'stage-2']} },
-          { test: /\.jsx$/, loader: 'babel-loader',query:{presets:['es2015', 'react', 'stage-2']}  }
+          { test: /\.js$/, loader: 'babel-loader',query:{presets:['es2015', 'react', 'stage-2', 'airbnb']} },
+          { test: /\.jsx$/, loader: 'babel-loader',query:{presets:['es2015', 'react', 'stage-2', 'airbnb']} }
         ]
       }
     },

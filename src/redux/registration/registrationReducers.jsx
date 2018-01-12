@@ -20,6 +20,7 @@ const registrationReducer = function registrationReducer(state = defaultState, a
 function registrationUserHandler(state, userLogin) {
   const updatedUsers = state.users.slice(0);
   updatedUsers.push(userLogin);
+
   return {
     ...state,
     users: updatedUsers
