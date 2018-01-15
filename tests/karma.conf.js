@@ -34,6 +34,8 @@ module.exports = function (config) {
     plugins: [
       'karma-webpack',
       'karma-jasmine',
+      'karma-sinon',
+      'karma-sinon-chai',
       'karma-sourcemap-loader',
       'karma-chrome-launcher'
     ],
