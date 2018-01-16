@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { login, logout } from '../../redux/registration/registrationActions.jsx';
 import { bindActionCreators } from 'redux';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
 class Navigate extends React.Component {
   userVisionContent = () => {
@@ -13,17 +13,17 @@ class Navigate extends React.Component {
         <Navbar inverse collapseOnSelect>
           <Navbar.Collapse>
             <Nav>
-              <LinkContainer to="/">
+              <IndexLinkContainer to="/">
                 <NavItem>Home</NavItem>
-              </LinkContainer>
+              </IndexLinkContainer>
               <LinkContainer to="/content">
                 <NavItem>Content</NavItem>
               </LinkContainer>
             </Nav>
             <Nav pullRight>
-              <LinkContainer to="/" onClick={this.props.logout}>
+              <IndexLinkContainer to="/" onClick={this.props.logout}>
                 <NavItem>Log Out</NavItem>
-              </LinkContainer>
+              </IndexLinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -38,9 +38,9 @@ class Navigate extends React.Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <LinkContainer to="/">
+              <IndexLinkContainer to="/">
                 <NavItem>Home</NavItem>
-              </LinkContainer>
+              </IndexLinkContainer>
             </Nav>
             <Nav pullRight>
               <LinkContainer to="/authorization">

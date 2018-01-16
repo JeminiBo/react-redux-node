@@ -56,7 +56,7 @@ class UserForm extends React.Component {
           <Row >
             <Col sm={3} smOffset={4}>
               <Col sm={5} >
-                <h4 className="loginInputText">FirstName:</h4>
+                <h3 className="loginInputText">FirstName:</h3>
               </Col>
               <Col sm={7} >
                 <FormControl value={this.state.firstName} onChange={this.handleChangeFirstName} />
@@ -69,7 +69,7 @@ class UserForm extends React.Component {
           <Row >
             <Col sm={3} smOffset={4}>
               <Col sm={5} >
-                <h4 className="loginInputText">SecondName:</h4>
+                <h3 className="loginInputText">SecondName:</h3>
               </Col>
               <Col sm={7} >
                 <FormControl value={this.state.secondName} onChange={this.handleChangeSecondName} />
@@ -82,7 +82,7 @@ class UserForm extends React.Component {
           <Row >
             <Col sm={3} smOffset={4}>
               <Col sm={5} >
-                <h4 className="loginInputText">Login:</h4>
+                <h3 className="loginInputText">Login:</h3>
               </Col>
               <Col sm={7} >
                 <FormControl value={this.state.login} onChange={this.handleChangeLogin} />
@@ -95,7 +95,7 @@ class UserForm extends React.Component {
           <Row >
             <Col sm={3} smOffset={4}>
               <Col sm={5} >
-                <h4 className="loginInputText">Password:</h4>
+                <h3 className="loginInputText">Password:</h3>
               </Col>
               <Col sm={7} >
                 <FormControl value={this.state.password} onChange={this.handleChangePassword} />
@@ -105,8 +105,10 @@ class UserForm extends React.Component {
         </FormGroup>
 
         <FormGroup>
-          <Col sm={1} smOffset={6} >
-            <Button bsStyle="info" bsSize="large" onClick={this.signUp.bind(this)}>Sign up</Button>
+          <Col sm={1} smOffset={6}>
+            <Col sm={1} smOffset={1}>
+              <Button bsStyle="info" bsSize="large" onClick={this.signUp.bind(this)}>Sign up</Button>
+            </Col>
           </Col>
         </FormGroup>
       </Form>

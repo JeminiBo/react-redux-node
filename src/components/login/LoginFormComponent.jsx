@@ -56,8 +56,10 @@ class LoginForm extends React.Component {
         </FormGroup>
 
         <FormGroup>
-          <Col xs={1} xsOffset={6} >
-            <Button bsStyle="info" bsSize="large" onClick={this.signIn.bind(this)}>Log In</Button>
+          <Col xs={1} xsOffset={6}>
+            <Col xs={1} xsOffset={2} >
+              <Button bsStyle="info" bsSize="large" onClick={this.signIn.bind(this)}>Log In</Button>
+            </Col>
           </Col>
         </FormGroup>
       </Form>
