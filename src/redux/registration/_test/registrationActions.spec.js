@@ -1,9 +1,6 @@
-import * as actions from '../registrationActions.jsx';
-import { setTimeout } from 'timers';
 const apiActions = require('inject-loader!../registrationActions.jsx');
 
-
-describe('test action login without api', function () {
+describe('Test actions: ', function () {
   beforeEach(function () {
     this.signUp = () => {
       return new Promise((resolve) => {
@@ -30,8 +27,13 @@ describe('test action login without api', function () {
       });
     }
     this.logoutUser = () => {
-
-      return false
+      let res = {
+        login: null,
+        password: null
+      }
+      return new Promise((resolve) => {
+        resolve(res);
+      });
     }
 
     this.apiMain = apiActions({
@@ -46,7 +48,7 @@ describe('test action login without api', function () {
 
   })
 
-  it('action login test', function () {
+  it('Should call dispatch with type: LOGIN and payload', function () {
     const dispatchSpy = jasmine.createSpy('dispatch');
     const stateAfter = this.apiMain.login('Joiker', 'Joiker')(dispatchSpy);
     setTimeout(() => {
@@ -54,7 +56,7 @@ describe('test action login without api', function () {
     }, 1);
   })
 
-  it('action registrationUser test', function () {
+  it('Should call dispatch with type: ADD_USER and payload', function () {
     const dispatchSpy = jasmine.createSpy('dispatch');
     const stateAfter = this.apiMain.registrationUser('Виктория Севрюк', 'Vika', 'Vika')(dispatchSpy);
     setTimeout(() => {
@@ -62,11 +64,16 @@ describe('test action login without api', function () {
     }, 1);
   })
 
-  it('action getUser test', function () {
+  it('Should call dispatch with type: SET_STATE and payload', function () {
     const dispatchSpy = jasmine.createSpy('dispatch');
     const stateAfter = this.apiMain.getUser()(dispatchSpy);
     setTimeout(() => {
       expect(dispatchSpy).toHaveBeenCalledWith({ type: 'SET_STATE', payload: { login: 'Joiker', password: 'Joiker' } })
     }, 1);
+  })
+
+  it('Should return type: LOGOUT', function () {
+    const stateAfter = this.apiMain.logout();
+    expect(stateAfter).toEqual({ type: 'LOGOUT' });
   })
 })
