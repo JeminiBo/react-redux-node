@@ -17,7 +17,7 @@ module.exports = function (config) {
       'tests.webpack.js': [ 'webpack', 'sourcemap' ]
     },
 
-    reporters: [ 'dots' ],
+    reporters: [ 'dots','kjhtml' ],
 
     webpack: {
       devtool: 'inline-source-map',
@@ -37,7 +37,8 @@ module.exports = function (config) {
       'karma-sinon',
       'karma-sinon-chai',
       'karma-sourcemap-loader',
-      'karma-chrome-launcher'
+      'karma-chrome-launcher',
+      'karma-jasmine-html-reporter'
     ],
 
     webpackServer: {

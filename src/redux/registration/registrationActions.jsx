@@ -11,7 +11,9 @@ export const registrationUser = (userName, userLogin, pass) => dispatch => {
     }
   }))
     .catch((err) => {
-      // alert(err.message);
+      dispatch({
+        type: 'ADD_USER_REJECTED'
+      });
     });
 };
 
@@ -40,7 +42,9 @@ export const getUser = () => dispatch => {
     payload: res
   }))
     .catch((err) => {
-      // alert(err.message);
+      dispatch({
+        type: 'SET_STATE_REJECTED'
+      });
     });
 };
 
