@@ -21,7 +21,7 @@ class Navigate extends React.Component {
               </LinkContainer>
             </Nav>
             <Nav pullRight>
-              <IndexLinkContainer to="/" onClick={this.props.logout}>
+              <IndexLinkContainer to="/authorization" onClick={this.props.logout}>
                 <NavItem>Log Out</NavItem>
               </IndexLinkContainer>
             </Nav>
@@ -75,4 +75,4 @@ const mapDispatchToProps = (dispatch) => ({
   }, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navigate);
+export default connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(Navigate);

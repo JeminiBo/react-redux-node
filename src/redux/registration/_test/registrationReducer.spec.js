@@ -5,7 +5,19 @@ import ReactTestUtils from 'react-dom/test-utils';
 import deepFreeze from 'deep-freeze';
 
 describe('Test reducer:', function () {
-  describe('Test loginUserHandler:', function () {
+  describe('Check default values:', function () {
+    beforeEach(function () {
+      const anotherAction = { type: 'ANOTHER_ACTION', payload: { userName: 'Pasha' } };
+      this.defaultState = myReducer(undefined, anotherAction);
+    });
+
+    it('Should have users property', function () {
+      expect(this.defaultState.users).toEqual([]);
+      expect(this.defaultState.currentUser).toEqual(null);
+    });
+  });
+  
+  describe('Check dispatch another action:', function () {
     beforeEach(function () {
       this.stateBefore = {
         users: {
@@ -24,18 +36,6 @@ describe('Test reducer:', function () {
       const stateAfter = myReducer(this.stateBefore, anotherAction);
 
       expect(stateAfter).toEqual(this.stateBefore);
-    });
-  });
-
-  describe('Check default values:', function () {
-    beforeEach(function () {
-      const anotherAction = { type: 'ANOTHER_ACTION', payload: { userName: 'Pasha' } };
-      this.defaultState = myReducer(undefined, anotherAction);
-    });
-
-    it('Should have users property', function () {
-      expect(this.defaultState.users).toEqual([]);
-      expect(this.defaultState.currentUser).toEqual(null);
     });
   });
 
@@ -113,4 +113,29 @@ describe('Test reducer:', function () {
       expect(stateAfter.users[0].pass).toEqual('12345');
     })
   })
+
+  describe('Action getUser:', function () {
+    beforeEach(function () {
+      this.createGetUserAction = () => {
+        const payload = {
+          login: 'Joiker',
+        };
+        return {
+          type: 'SET_STATE',
+          payload
+        }
+      };
+
+      this.stateBefore = {
+        users: [],
+        currentUser: null
+      };
+    });
+
+    it('Should get user', function () {
+      deepFreeze(this.stateBefore);
+      const stateAfter = myReducer(this.stateBefore, this.createGetUserAction());
+      expect(stateAfter.currentUser.userLogin).toEqual('Joiker');
+    });
+  });
 })

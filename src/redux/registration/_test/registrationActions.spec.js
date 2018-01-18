@@ -1,79 +1,192 @@
-/*const apiActions = require('inject-loader!../registrationActions.jsx');
+const apiActions = require('inject-loader!../registrationActions.jsx');
 
-describe('Test actions: ', function () {
-  beforeEach(function () {
-    this.signUp = () => {
-      return new Promise((resolve) => {
-        resolve();
-      });
-    }
-    this.signIn = (login, password) => {
-      let res = {
-        login,
-        password
-      }
-      return new Promise((resolve) => {
-        resolve(res);
-      });
+describe('Test actions:', function () {
+  describe('Test registration action:', function () {
+    describe('Promise return resolve:', function () {
+      beforeEach(function (done) {
+        this.signUp = () => {
+          return new Promise((resolve, reject) => {
+            resolve();
+          });
+        }
 
-    }
-    this.userIn = () => {
-      let res = {
-        login: 'Joiker',
-        password: 'Joiker'
-      }
-      return new Promise((resolve) => {
-        resolve(res);
-      });
-    }
-    this.logoutUser = () => {
-      let res = {
-        login: null,
-        password: null
-      }
-      return new Promise((resolve) => {
-        resolve(res);
-      });
-    }
+        this.apiMain = apiActions({
+          '../../api/index.js': {
+            signUp: this.signUp,
+          }
+        });
 
-    this.apiMain = apiActions({
-      '../../api/index.js': {
-        signUp: this.signUp,
-        signIn: this.signIn,
-        userIn: this.userIn,
-        logoutUser: this.logoutUser
-      }
+        this.dispatchSpy = jasmine.createSpy('dispatch');
+        this.stateAfter = this.apiMain.registrationUser('Виктория Севрюк', 'Vika', 'Vika')(this.dispatchSpy);
+        done();
+      })
+
+      it('Should dispatch registrationUser action if user registered', function () {
+        expect(this.dispatchSpy).toHaveBeenCalledWith({ type: 'ADD_USER', payload: { userName: 'Виктория Севрюк', userLogin: 'Vika', pass: 'Vika' } })
+      })
     });
 
+    describe('Promise return reject:', function () {
+      beforeEach(function (done) {
+        this.signUp = () => {
+          return new Promise((resolve, reject) => {
+            reject();
+          });
+        }
+        this.apiMain = apiActions({
+          '../../api/index.js': {
+            signUp: this.signUp,
+          }
+        });
 
+        this.dispatchSpy = jasmine.createSpy('dispatch');
+        this.stateAfter = this.apiMain.registrationUser('Виктория Севрюк', 'Vika', 'Vika')(this.dispatchSpy);
+        done();
+      })
+
+      it('Should dispatch reject if user not registered', function () {
+        expect(this.dispatchSpy).toHaveBeenCalledWith({ type: 'ADD_USER_REJECTED' })
+      })
+    })
   })
 
-  it('Should call dispatch with type: LOGIN and payload', function () {
-    const dispatchSpy = jasmine.createSpy('dispatch');
-    const stateAfter = this.apiMain.login('Joiker', 'Joiker')(dispatchSpy);
-    setTimeout(() => {
-      expect(dispatchSpy).toHaveBeenCalledWith({ type: 'LOGIN', payload: { userLogin: 'Joiker', pass: 'Joiker' } });
-    }, 1);
+  describe('Test login action:', function () {
+    describe('Promise return resolve:', function () {
+      beforeEach(function (done) {
+        this.signIn = (login, password) => {
+          let res = {
+            login,
+            password
+          }
+          return new Promise((resolve) => {
+            resolve(res);
+          });
+        }
+
+        this.apiMain = apiActions({
+          '../../api/index.js': {
+            signIn: this.signIn,
+          }
+        });
+
+        this.dispatchSpy = jasmine.createSpy('dispatch');
+        this.stateAfter = this.apiMain.login('Joiker', 'Joiker')(this.dispatchSpy);
+        done();
+      })
+
+      it('Should dispatch login action if user exists', function () {
+        expect(this.dispatchSpy).toHaveBeenCalledWith({ type: 'LOGIN', payload: { userLogin: 'Joiker', pass: 'Joiker' } });
+      })
+    })
+
+    describe('Promise return reject:', function () {
+      beforeEach(function (done) {
+        this.signIn = (login, password) => {
+          let res = {
+            login,
+            password
+          }
+          return new Promise((resolve, reject) => {
+            reject();
+          });
+        }
+
+        this.apiMain = apiActions({
+          '../../api/index.js': {
+            signIn: this.signIn,
+          }
+        });
+
+        this.dispatchSpy = jasmine.createSpy('dispatch');
+        this.stateAfter = this.apiMain.login('Joiker', 'Joiker')(this.dispatchSpy);
+        done();
+      })
+
+      it('Should dispatch reject if user not exists', function () {
+        expect(this.dispatchSpy).toHaveBeenCalled();
+      })
+    })
   })
 
-  it('Should call dispatch with type: ADD_USER and payload', function () {
-    const dispatchSpy = jasmine.createSpy('dispatch');
-    const stateAfter = this.apiMain.registrationUser('Виктория Севрюк', 'Vika', 'Vika')(dispatchSpy);
-    setTimeout(() => {
-      expect(dispatchSpy).toHaveBeenCalledWith({ type: 'ADD_USER', payload: { userName: 'Виктория Севрюк', userLogin: 'Vika', pass: 'Vika' } })
-    }, 1);
+  describe('Test getUser action:', function () {
+    describe('Promise return resolve:', function () {
+      beforeEach(function (done) {
+        this.userIn = () => {
+          let res = {
+            login: 'Joiker',
+            password: 'Joiker'
+          }
+          return new Promise((resolve) => {
+            resolve(res);
+          });
+        }
+
+        this.apiMain = apiActions({
+          '../../api/index.js': {
+            userIn: this.userIn,
+          }
+        });
+
+        this.dispatchSpy = jasmine.createSpy('dispatch');
+        this.stateAfter = this.apiMain.getUser()(this.dispatchSpy);
+        done();
+      })
+      it('Should dispatch getUser action if user is received', function () {
+        expect(this.dispatchSpy).toHaveBeenCalledWith({ type: 'SET_STATE', payload: { login: 'Joiker', password: 'Joiker' } })
+      })
+
+    })
+
+    describe('Promise return reject:', function () {
+      beforeEach(function (done) {
+        this.userIn = () => {
+          let res = {
+            login: 'Joiker',
+            password: 'Joiker'
+          }
+          return new Promise((resolve, reject) => {
+            reject();
+          });
+        }
+
+        this.apiMain = apiActions({
+          '../../api/index.js': {
+            userIn: this.userIn,
+          }
+        });
+
+        this.dispatchSpy = jasmine.createSpy('dispatch');
+        this.stateAfter = this.apiMain.getUser()(this.dispatchSpy);
+        done();
+      })
+
+      it('Should dispatch reject if user is not received', function () {
+        expect(this.dispatchSpy).toHaveBeenCalledWith({ type: 'SET_STATE_REJECTED' });
+      })
+    })
   })
 
-  it('Should call dispatch with type: SET_STATE and payload', function () {
-    const dispatchSpy = jasmine.createSpy('dispatch');
-    const stateAfter = this.apiMain.getUser()(dispatchSpy);
-    setTimeout(() => {
-      expect(dispatchSpy).toHaveBeenCalledWith({ type: 'SET_STATE', payload: { login: 'Joiker', password: 'Joiker' } })
-    }, 1);
-  })
+  describe('Test logout action:', function () {
+    beforeEach(function () {
+      this.logoutUser = () => {
+        let res = {
+          login: null,
+          password: null
+        }
+        return new Promise((resolve) => {
+          resolve(res);
+        });
+      }
 
-  it('Should return type: LOGOUT', function () {
-    const stateAfter = this.apiMain.logout();
-    expect(stateAfter).toEqual({ type: 'LOGOUT' });
+      this.apiMain = apiActions({
+        '../../api/index.js': {
+          logoutUser: this.logoutUser,
+        }
+      });
+    })
+    it('Should return type: LOGOUT', function () {
+      const stateAfter = this.apiMain.logout();
+      expect(stateAfter).toEqual({ type: 'LOGOUT' });
+    })
   })
-})*/
+})

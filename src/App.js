@@ -16,9 +16,18 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => rest.isAutorized() === null
-        ? <Component {...props} />
+        ? <div><NavbarBlock /><Component {...props} /></div>
         : <Redirect to={{ pathname: '/' }} />
       }
+    />
+  );
+};
+
+const CustomRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) => <div><NavbarBlock /><Component {...props} /></div>}
     />
   );
 };
@@ -37,13 +46,12 @@ class App extends React.Component {
       <Router>
         <div>
           <NotificationComponent />
-          <NavbarBlock />
           <Switch>
             <PrivateRoute exact path="/authorization" component={LoginComponent} isAutorized={this.isAutorized} />
             <PrivateRoute exact path="/registration" component={RegistrationComponent} isAutorized={this.isAutorized} />
-            <Route exact path="/content" component={Content} />
-            <Route exact path="/" component={Home} />
-            <Route path="*" render={() => (<Redirect to="/" />)} />
+            <CustomRoute exact path="/content" component={Content} />
+            <CustomRoute exact path="/" component={Home} />
+            <CustomRoute path="*" render={() => (<Redirect to="/" />)} />
           </Switch>
         </div>
       </Router>
